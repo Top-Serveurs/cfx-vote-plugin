@@ -8,3 +8,4 @@ version '1.0.0'
 url 'https://github.com/Top-Serveurs/fivem-vote-plugin-v2'
 
 server_script 'vote.js'
+server_script 'example.lua'

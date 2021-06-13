@@ -31,6 +31,14 @@ const privKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
 class Decrypter {
     constructor() {
         this.key = new NodeRSA(privKey);
+        this.key.setOptions({
+            environment: 'browser',
+            encryptionScheme: {
+                scheme: 'pkcs1_oaep',
+                hash: 'sha256',
+                label: 'RSA_LABEL'
+            }
+        });
     }
 
     decrypt(content) {

@@ -33,17 +33,16 @@ class Server {
         if (! this.security.isTrustedIP(rinfo.address)) {
             return console.log('ERROR: Receving a vote from an untrusted IP');
         }
-        const payload = this.decrypter.decrypt(`${msg}`);
-        if (payload.action === "vote") {
+        const payload = JSON.parse(this.decrypter.decrypt(`${msg}`));
+        if (payload.Action === "vote") {
             this.voteReceptor.handleVote(payload);
-        } else if (payload.action === "refresh_ip") {
+        } else if (payload.Action === "refresh_ip") {
             this.security.loadTrustedIP();
-        } else if (payload.action === "test") {
+        } else if (payload.Action === "test") {
             console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
         } else {
             console.log('ERROR: No action match the current payload');
         }
-        console.log(payload);
     }
 
     handleError = error => {

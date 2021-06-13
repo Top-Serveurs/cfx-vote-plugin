@@ -28,26 +28,26 @@ class VoteReceptor {
     }
 
     checkDate(date) {
-        const regex = /^(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2})$/;
+        const regex = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/;
         if (! date) return false;
         if (date.length > 25) return false;
         return date.match(regex);
     }
 
-    hasError({token, playername, ip, version, date}) {
-        if (token !== this.token) {
+    hasError({Token, Playername, IP, Version, Date}) {
+        if (Token !== this.token) {
             return "Wrong vote token";
         }
-        if (! this.checkPlayername(playername)) {
+        if (! this.checkPlayername(Playername)) {
             return "Invalid playername";
         }
-        if (! this.checkIP(ip)) {
+        if (! this.checkIP(IP)) {
             return "Invalid IP address";
         }
-        if (! this.checkVersion(version)) {
+        if (! this.checkVersion(Version)) {
             return "Invalid version";
         }
-        if (! this.checkDate(date)) {
+        if (! this.checkDate(Date)) {
             return "Invalid date";
         }
         return null;
@@ -58,10 +58,10 @@ class VoteReceptor {
         if (error) {
             return console.log(`ERROR: ${error}`);
         }
-        const { playername, ip, date, version } = vote;
-        emit("onPlayerVote", playername, ip, date);
-        if (version !== pjson.version) {
-            console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.')
+        const { Playername, IP, Date, Version } = vote;
+        emit("onPlayerVote", Playername, IP, Date);
+        if (Version !== pjson.version) {
+            console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
         }
     }
 }
