@@ -8,8 +8,8 @@ const config = {
 
 const server = new Server(config);
 
-on('onResourceStart', (resourcename) => {
-    if (resourcename === 'vote') {
+on('onResourceStart', resourceName => {
+    if (resourceName === 'vote') {
         if (config.token.length === 0) {
             console.log('ERROR: the vote token is missing in your config file. Please fill it!')
         } else {

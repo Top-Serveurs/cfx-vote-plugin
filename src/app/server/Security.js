@@ -4,7 +4,8 @@ class Security {
     constructor(env) {
         this.env = env;
         this.trustedIP = [
-          "XXXXXXX"
+          "188.165.45.67",
+          "188.165.46.57",
         ];
         this.loadTrustedIP();
     }
