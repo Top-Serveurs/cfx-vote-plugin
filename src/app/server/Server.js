@@ -33,7 +33,7 @@ class Server {
         }
         const payload = JSON.parse(msg);
         if (payload.Action === "vote") {
-			this.voteReceptor.handleVote(payload);
+	    this.voteReceptor.handleVote(payload);
         } else if (payload.Action === "refresh_ip") {
             this.security.loadTrustedIP();
         } else if (payload.Action === "test") {
