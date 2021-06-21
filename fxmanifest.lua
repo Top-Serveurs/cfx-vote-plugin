@@ -9,3 +9,12 @@ url 'https://github.com/Top-Serveurs/cfx-vote-plugin'
 
 server_script 'vote.js'
 server_script 'example.lua'
+
+client_script 'vote-ui.js'
+
+files {
+    'ui/js/app.js',
+    'ui/index.html',
+}
+
+ui_page 'ui/index.html'
