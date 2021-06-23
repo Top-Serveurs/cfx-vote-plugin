@@ -4,7 +4,7 @@ import React, { useState, useContext, createContext } from 'react';
 const VisbilityContext = createContext(undefined);
 
 export default function VisibilityProvider({ children }) {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const toggleIsVisible = () => {
         setIsVisible(!isVisible)
     }

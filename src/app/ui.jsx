@@ -12,5 +12,3 @@ ReactDOM.render(
     </VisibilityProvider>,
   document.getElementById('app'),
 );
-
-module.hot.accept();

@@ -15,5 +15,5 @@ const Close = () => {
             <CloseIcon />
         </IconButton>
     )
-}
+};
 export default Close;
