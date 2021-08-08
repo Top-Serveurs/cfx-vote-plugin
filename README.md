@@ -1,7 +1,5 @@
 # Votes plugin for FiveM / RedM servers (Cfx)
 
-Disclaimer: This plugin is currently in BETA. If you are looking for our old plugin, please take a look here: https://github.com/Top-Serveurs/fivem-vote-plugin
-
 - [:us: English documentation](./README.md)
 - [:fr: Documentation française](./README_FR.md)
 
