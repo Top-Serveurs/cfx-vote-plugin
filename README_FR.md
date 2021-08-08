@@ -1,7 +1,5 @@
 # Plugin de votes pour serveur GTA V FIVEM / RDR2 Redm (Cfx)
 
-Disclaimer : Ce plugin est actuellement en BETA. Si vous recherchez notre ancien plugin, vous pouvez le retrouver ici : https://github.com/Top-Serveurs/fivem-vote-plugin
-
 - [:us: English documentation](./README.md)
 - [:fr: Documentation française](./README_FR.md)
 
