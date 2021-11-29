@@ -72,15 +72,15 @@ AddEventHandler('onPlayerVote', function (playername, ip, date)
         end
 
         -- Notify player and print console
-        if Config.GiveCash and not Config.GiveBank then
-            xPlayer.showNotification('Thanks for your vote, you received ~g~$'..Config.GiveCash..'~s~ of cash money !')
+        if Config.GiveCash > 0 and Config.GiveBank < 1 then
+            xPlayer.showNotification('Thanks for your vote, you received ~g~$'..Config.GiveCash..'~s~ of cash money!')
             debug('Someone just voted for the server and '..xPlayer.getName()..' received ^5$'..Config.GiveCash..'^7 of cash money')
 
-        elseif Config.GiveBank and not Config.GiveCash then
+        elseif Config.GiveBank > 0 and Config.GiveCash < 1 then
             xPlayer.showNotification('Thanks for your vote, you received ~g~$'..Config.GiveBank..'~s~ in your bank account!')
             debug('Someone just voted for the server and '..xPlayer.getName()..' received ^5$'..Config.GiveBank..'^7 in his bank account')
 
-        elseif Config.GiveBank and Config.GiveCash then
+        elseif Config.GiveBank > 0 and Config.GiveCash > 0 then
             xPlayer.showNotification('Thanks for your vote, you received ~g~$'..Config.GiveCash..'~s~ of cash money and ~g~$'..Config.GiveBank..'~s~ in your bank account!')
             debug('Someone just voted for the server and '..xPlayer.getName()..' received ^5$'..Config.GiveCash..'^7 of cash money and ^5$'..Config.GiveBank..'^7 in his bank account')
 
@@ -118,13 +118,13 @@ AddEventHandler('onPlayerVote', function (playername, ip, date)
                     ['@accounts'] =  json.encode(playerAccounts),
                 }, function(rowsChanged)
                     if rowsChanged > 0 then
-                        if Config.GiveCash and not Config.GiveBank then
+                        if Config.GiveCash > 0 and Config.GiveBank < 1 then
                             debug('Someone just voted for the server and '..result[1].firstname..' '..result[1].lastname..' (offline) received ^5$'..Config.GiveCash..'^7 of cash money')
 
-                        elseif not Config.GiveCash and Config.GiveBank then
+                        elseif Config.GiveBank > 0 and Config.GiveCash < 1 then
                             debug('Someone just voted for the server and '..result[1].firstname..' '..result[1].lastname..' (offline) received ^5$'..Config.GiveBank..'^7 in his bank account')
 
-                        elseif Config.GiveCash and Config.GiveBank then
+                        elseif Config.GiveBank > 0 and Config.GiveCash > 0 then
                             debug('Someone just voted for the server and '..result[1].firstname..' '..result[1].lastname..' (offline) received ^5$'..Config.GiveCash..'^7 of cash money and ^5$'..Config.GiveBank..'^7 in his bank account')
 
                         end
