@@ -3,7 +3,7 @@
 - [:us: English documentation](./README.md)
 - [:fr: Documentation française](./README_FR.md)
 
-This is the Top-Games/Top-Serveurs (https://top-games.net / https://top-serveurs.net) new votes plugin (currently in beta) which is used to receive votes directly on your FiveM/RedM server. When a player votes, Top-Games directly notifies your server and you can thus reward your players or make a ranking of the best voters (by example), the possibilities are endless.
+This is the Top-Games/Top-Serveurs (https://top-games.net / https://top-serveurs.net) new votes plugin which is used to receive votes directly on your FiveM/RedM server. When a player votes, Top-Games directly notifies your server and you can thus reward your players or make a ranking of the best voters (by example), the possibilities are endless.
 
 But what is FiveM for? [FiveM](https://top-games.net/gta/type/fivem) allows you to create a GTA server, you can find in particular a [GTA 5 RP](https://top-games.net/gta/type/roleplay) on our site.
 
