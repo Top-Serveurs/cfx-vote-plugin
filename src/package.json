@@ -1,6 +1,6 @@
 {
   "name": "cfx-vote-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms",
   "scripts": {
     "build": "webpack --progress",
