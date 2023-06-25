@@ -467,7 +467,7 @@ module.exports = {
 /* 1 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"cfx-vote-plugin\",\"version\":\"1.1.0\",\"description\":\"A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms\",\"scripts\":{\"build\":\"webpack --progress\",\"dev\":\"webpack --watch --progress\"},\"license\":\"MIT\",\"dependencies\":{\"axios\":\"^0.21.1\"},\"devDependencies\":{\"@babel/core\":\"^7.14.3\",\"@babel/eslint-parser\":\"^7.14.4\",\"@babel/eslint-plugin\":\"^7.13.16\",\"@babel/preset-env\":\"^7.14.4\",\"@citizenfx/server\":\"^1.0.2624-1\",\"babel-eslint\":\"^10.1.0\",\"babel-loader\":\"^8.2.2\",\"babel-plugin-transform-class-properties\":\"^6.24.1\",\"eslint\":\"^6.8.0\",\"webpack\":\"^4.46.0\",\"webpack-cli\":\"^3.3.12\"}}");
+module.exports = JSON.parse("{\"name\":\"cfx-vote-plugin\",\"version\":\"1.1.1\",\"description\":\"A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms\",\"scripts\":{\"build\":\"webpack --progress\",\"dev\":\"webpack --watch --progress\"},\"license\":\"MIT\",\"dependencies\":{\"axios\":\"^0.21.1\"},\"devDependencies\":{\"@babel/core\":\"^7.14.3\",\"@babel/eslint-parser\":\"^7.14.4\",\"@babel/eslint-plugin\":\"^7.13.16\",\"@babel/preset-env\":\"^7.14.4\",\"@citizenfx/server\":\"^1.0.2624-1\",\"babel-eslint\":\"^10.1.0\",\"babel-loader\":\"^8.2.2\",\"babel-plugin-transform-class-properties\":\"^6.24.1\",\"eslint\":\"^6.8.0\",\"webpack\":\"^4.46.0\",\"webpack-cli\":\"^3.3.12\"}}");
 
 /***/ }),
 /* 2 */
@@ -3888,7 +3888,7 @@ const app_config = {
 };
 const server = new server_Server(app_config);
 on('onResourceStart', resourceName => {
-  if (resourceName === 'cfx-vote-plugin') {
+  if (resourceName === 'vote') {
     if (app_config.token.length === 0) {
       console.log('ERROR: the vote token is missing in your config file. Please fill it!');
     } else {

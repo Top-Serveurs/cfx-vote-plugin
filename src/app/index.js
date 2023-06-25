@@ -9,7 +9,7 @@ const config = {
 const server = new Server(config);
 
 on('onResourceStart', resourceName => {
-    if (resourceName === 'cfx-vote-plugin') {
+    if (resourceName === 'vote') {
         if (config.token.length === 0) {
             console.log('ERROR: the vote token is missing in your config file. Please fill it!')
         } else {
