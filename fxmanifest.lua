@@ -15,4 +15,5 @@ server_scripts {
     'example.lua',
     -- '@mysql-async/lib/MySQL.lua', -- Required if you use 'example_esx.lua'
     -- 'example_esx.lua',
+    -- 'example_vorp.lua',
 }

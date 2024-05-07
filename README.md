@@ -27,7 +27,7 @@ set vote_token "XXXXXXXXX"
 set vote_port "8192"
 ```
 
-4. Use the `onPlayerVote` event to receive the votes cast. An example is available in the `example.lua` file and in the `example_esx.lua` file for a small example with ESX (remember to delete the examples). Here is an example:
+4. Use the `onPlayerVote` event to receive the votes cast. Some examples are available in the `example.lua` file, in the `example_esx.lua` file for a small example with ESX and in the `example_vorp.lua` file for an example with the VORP framework (remember to delete the example files you don't need). Also, here is a basic example:
 
 ```lua
 AddEventHandler('onPlayerVote', function (playername, ip, date)
@@ -53,3 +53,4 @@ If you need help setting up the plugin or if you have any suggestions, do not he
 Thanks to our contributors who help us improve the plugin:
 - [@meyervp](https://github.com/meyervp)
 - [@Dolu (DoluTattoo)](https://github.com/dolutattoo)
+- [@Benjamin7222](https://github.com/Benjamin7222)
