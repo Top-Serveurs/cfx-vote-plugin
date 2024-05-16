@@ -3875,8 +3875,7 @@ class Server_Server {
         req.setDataHandler(data => {
           this.handleRequest(data, req.address);
         });
-        res.writeHead(200);
-        res.send();
+        res.writeHead(200, headers);
       }
     });
   }
