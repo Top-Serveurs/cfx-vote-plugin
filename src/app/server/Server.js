@@ -21,7 +21,8 @@ class Server {
                 req.setDataHandler(data => {
                     this.handleRequest(data, req.address);
                 })
-                res.writeHead(200, headers)
+                res.writeHead(200);
+                res.send('OK');
             }
         })
     }
