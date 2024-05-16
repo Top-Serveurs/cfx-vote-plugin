@@ -1,7 +1,7 @@
 import dgram from 'dgram';
+import pjson from '../../package.json';
 import Security from "./Security";
 import VoteReceptor from "./VoteReceptor";
-import pjson from '../../package.json';
 
 class Server {
     constructor(config) {
@@ -16,10 +16,14 @@ class Server {
         console.log(`Initializing vote plugin (v${pjson.version})...`);
         console.log(`Support Top-Games: https://top-games.net/contact`);
         console.log(`Support Top-Serveurs: https://top-serveurs.net/contact`);
-        this.socketServer.on('error', this.handleError);
-        this.socketServer.on('message', this.handleMessage);
-        this.socketServer.on('listening', this.handleListening);
-        this.socketServer.bind(this.port);
+        SetHttpHandler((req, res) => {
+            if (req.path === '/') {
+                req.setDataHandler(data => {
+                    this.handleRequest(data, req.address);
+                })
+                res.writeHead(200, headers)
+            }
+        })
     }
 
     handleListening = () => {
@@ -27,13 +31,13 @@ class Server {
         console.log(`The vote plugin is active and listening on port ${address.port}`);
     };
 
-    handleMessage = (msg, rinfo) => {
-        if (! this.security.isTrustedIP(rinfo.address)) {
+    handleRequest = (data, address) => {
+        if (! this.security.isTrustedIP(address)) {
             return console.log('ERROR: Receving a vote from an untrusted IP');
         }
-        const payload = JSON.parse(msg);
+        const payload = JSON.parse(data);
         if (payload.Action === "vote") {
-	    this.voteReceptor.handleVote(payload);
+	        this.voteReceptor.handleVote(payload);
         } else if (payload.Action === "refresh_ip") {
             this.security.loadTrustedIP();
         } else if (payload.Action === "test") {
