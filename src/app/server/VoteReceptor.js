@@ -54,15 +54,19 @@ class VoteReceptor {
     }
 
     handleVote(vote) {
-        const error = this.hasError(vote);
-        if (error) {
-            return console.log(`ERROR: ${error}`);
-        }
-        const { Playername, IP, Date, Version } = vote;
-        emit("onPlayerVote", Playername, IP, Date);
-        if (Version !== pjson.version) {
-            console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
-        }
+        return new Promise((resolve, reject) => {
+            const error = this.hasError(vote);
+            if (error) {
+                console.log(`ERROR: ${error}`);
+                return reject(error);
+            }
+            const { Playername, IP, Date, Version } = vote;
+            emit("onPlayerVote", Playername, IP, Date);
+            if (Version !== pjson.version) {
+                console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
+            }
+            resolve(true);
+        });
     }
 }
 
