@@ -19,10 +19,8 @@ class Server {
         SetHttpHandler((req, res) => {
             if (req.path === '/') {
                 req.setDataHandler(data => {
-                    this.handleRequest(data, req.address);
+                    this.handleRequest(res, data, req.address);
                 })
-                res.writeHead(200);
-                res.send('OK');
             }
         })
     }
@@ -32,26 +30,29 @@ class Server {
         console.log(`The vote plugin is active and listening on port ${address.port}`);
     };
 
-    handleRequest = (data, address) => {
+    handleRequest = (res, data, address) => {
         if (! this.security.isTrustedIP(address)) {
-            return console.log('ERROR: Receving a vote from an untrusted IP');
+            return this.returnError(res, 'ERROR: Receving a vote from an untrusted IP');
         }
         const payload = JSON.parse(data);
         if (payload.Action === "vote") {
-	        this.voteReceptor.handleVote(payload);
+		    this.voteReceptor.handleVote(payload);
         } else if (payload.Action === "refresh_ip") {
-            this.security.loadTrustedIP();
+        	this.security.loadTrustedIP();
         } else if (payload.Action === "test") {
-            console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
+        	console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
+		    res.writeHead(200);
+		    res.send('test-success');
         } else {
-            console.log('ERROR: No action match the current payload');
+            return this.returnError(res, 'ERROR: No action match the current payload');
         }
     };
 
-    handleError = error => {
-        console.log(`ERROR: ${error.stack}`);
-        this.socketServer.close();
-    };
+    returnError(res, error) {
+        console.log(error);
+        res.writeHead(400);
+        res.send(error);
+    }
 
 }
 
