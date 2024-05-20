@@ -467,7 +467,7 @@ module.exports = {
 /* 1 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"cfx-vote-plugin\",\"version\":\"1.1.3\",\"description\":\"A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms\",\"scripts\":{\"build\":\"webpack --progress\",\"dev\":\"webpack --watch --progress\"},\"license\":\"MIT\",\"dependencies\":{\"axios\":\"^0.21.1\"},\"devDependencies\":{\"@babel/core\":\"^7.14.3\",\"@babel/eslint-parser\":\"^7.14.4\",\"@babel/eslint-plugin\":\"^7.13.16\",\"@babel/preset-env\":\"^7.14.4\",\"@citizenfx/server\":\"^1.0.2624-1\",\"babel-eslint\":\"^10.1.0\",\"babel-loader\":\"^8.2.2\",\"babel-plugin-transform-class-properties\":\"^6.24.1\",\"eslint\":\"^6.8.0\",\"webpack\":\"^4.46.0\",\"webpack-cli\":\"^3.3.12\"}}");
+module.exports = JSON.parse("{\"name\":\"cfx-vote-plugin\",\"version\":\"3.0.0\",\"description\":\"A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms\",\"scripts\":{\"build\":\"webpack --progress\",\"dev\":\"webpack --watch --progress\"},\"license\":\"MIT\",\"dependencies\":{\"axios\":\"^0.21.1\"},\"devDependencies\":{\"@babel/core\":\"^7.14.3\",\"@babel/eslint-parser\":\"^7.14.4\",\"@babel/eslint-plugin\":\"^7.13.16\",\"@babel/preset-env\":\"^7.14.4\",\"@citizenfx/server\":\"^1.0.2624-1\",\"babel-eslint\":\"^10.1.0\",\"babel-loader\":\"^8.2.2\",\"babel-plugin-transform-class-properties\":\"^6.24.1\",\"eslint\":\"^6.8.0\",\"webpack\":\"^4.46.0\",\"webpack-cli\":\"^3.3.12\"}}");
 
 /***/ }),
 /* 2 */
@@ -3797,23 +3797,28 @@ class VoteReceptor_VoteReceptor {
   }
 
   handleVote(vote) {
-    const error = this.hasError(vote);
+    return new Promise((resolve, reject) => {
+      const error = this.hasError(vote);
 
-    if (error) {
-      return console.log(`ERROR: ${error}`);
-    }
+      if (error) {
+        console.log(`ERROR: ${error}`);
+        return reject(error);
+      }
 
-    const {
-      Playername,
-      IP,
-      Date,
-      Version
-    } = vote;
-    emit("onPlayerVote", Playername, IP, Date);
+      const {
+        Playername,
+        IP,
+        Date,
+        Version
+      } = vote;
+      emit("onPlayerVote", Playername, IP, Date);
 
-    if (Version !== package_0.version) {
-      console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
-    }
+      if (Version !== package_0.version) {
+        console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
+      }
+
+      resolve(true);
+    });
   }
 
 }
@@ -3827,32 +3832,29 @@ class VoteReceptor_VoteReceptor {
 
 class Server_Server {
   constructor(config) {
-    this.handleListening = () => {
-      const address = this.socketServer.address();
-      console.log(`The vote plugin is active and listening on port ${address.port}`);
-    };
-
-    this.handleRequest = (data, address) => {
+    this.handleRequest = (res, data, address) => {
       if (!this.security.isTrustedIP(address)) {
-        return console.log('ERROR: Receving a vote from an untrusted IP');
+        return this.returnError(res, 'ERROR: Receving a vote from an untrusted IP');
       }
 
       const payload = JSON.parse(data);
 
       if (payload.Action === "vote") {
-        this.voteReceptor.handleVote(payload);
+        this.voteReceptor.handleVote(payload).then(() => {
+          res.writeHead(200);
+          return res.send('success');
+        }).catch(error => {
+          return this.returnError(res, error);
+        });
       } else if (payload.Action === "refresh_ip") {
         this.security.loadTrustedIP();
       } else if (payload.Action === "test") {
         console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
+        res.writeHead(200);
+        res.send('test-success');
       } else {
-        console.log('ERROR: No action match the current payload');
+        return this.returnError(res, 'ERROR: No action match the current payload');
       }
-    };
-
-    this.handleError = error => {
-      console.log(`ERROR: ${error.stack}`);
-      this.socketServer.close();
     };
 
     const {
@@ -3873,12 +3875,17 @@ class Server_Server {
     SetHttpHandler((req, res) => {
       if (req.path === '/') {
         req.setDataHandler(data => {
-          this.handleRequest(data, req.address);
+          this.handleRequest(res, data, req.address);
         });
-        res.writeHead(200);
-        res.send('OK');
       }
     });
+    console.log(`The vote plugin is active on the default server port`);
+  }
+
+  returnError(res, error) {
+    console.log(error);
+    res.writeHead(400);
+    res.send(error);
   }
 
 }

@@ -7,7 +7,7 @@ class Security {
           "188.165.45.67",
           "188.165.46.57",
         ];
-        this.loadTrustedIP();
+        this.loadTrustedIP()
     }
 
     loadTrustedIP() {

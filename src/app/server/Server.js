@@ -23,13 +23,8 @@ class Server {
                 })
             }
         })
+        console.log(`The vote plugin is active on the default server port`);
     }
-
-    handleListening = () => {
-        const address = this.socketServer.address();
-        console.log(`The vote plugin is active and listening on port ${address.port}`);
-    };
-
     handleRequest = (res, data, address) => {
         if (! this.security.isTrustedIP(address)) {
             return this.returnError(res, 'ERROR: Receving a vote from an untrusted IP');
@@ -43,12 +38,7 @@ class Server {
                 return this.returnError(res, error);
             });
         } else if (payload.Action === "refresh_ip") {
-        	this.security.loadTrustedIP().then(() => {
-                res.writeHead(200);
-                return res.send('load-trusted-ip-success');
-            }).catch((error) => {
-                return this.returnError(res, error);
-            });
+        	this.security.loadTrustedIP();
         } else if (payload.Action === "test") {
         	console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
 		    res.writeHead(200);
