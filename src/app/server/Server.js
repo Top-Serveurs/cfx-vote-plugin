@@ -36,9 +36,19 @@ class Server {
         }
         const payload = JSON.parse(data);
         if (payload.Action === "vote") {
-		    this.voteReceptor.handleVote(payload);
+		    this.voteReceptor.handleVote(payload).then(() => {
+                res.writeHead(200);
+                return res.send('success');
+            }).catch((error) => {
+                return this.returnError(res, error);
+            });
         } else if (payload.Action === "refresh_ip") {
-        	this.security.loadTrustedIP();
+        	this.security.loadTrustedIP().then(() => {
+                res.writeHead(200);
+                return res.send('load-trusted-ip-success');
+            }).catch((error) => {
+                return this.returnError(res, error);
+            });
         } else if (payload.Action === "test") {
         	console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
 		    res.writeHead(200);
