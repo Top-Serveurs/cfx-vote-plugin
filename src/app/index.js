@@ -1,7 +1,6 @@
 import Server from "./server/Server";
 
 const config = {
-    port: GetConvar("vote_port", "8192" ),
     token: GetConvar("vote_token", ""),
     env: GetConvar("vote_env", "prod")
 };

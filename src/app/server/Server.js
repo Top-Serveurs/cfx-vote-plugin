@@ -1,15 +1,12 @@
-import dgram from 'dgram';
 import pjson from '../../package.json';
 import Security from "./Security";
 import VoteReceptor from "./VoteReceptor";
 
 class Server {
     constructor(config) {
-        const { token, port, env } = config;
+        const { token, env } = config;
         this.security = new Security(env);
         this.voteReceptor = new VoteReceptor(token);
-        this.port = port;
-        this.socketServer = dgram.createSocket('udp4')
     }
 
     start() {
