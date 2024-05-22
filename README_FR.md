@@ -15,19 +15,15 @@ Mais à quoi sert FiveM ? [FiveM](https://top-serveurs.net/gta/type/fivem) vous 
 
 1. Copiez le dossier `cfx-vote-plugin` dans le dossier `resources` de votre serveur Fivem/RedM
 
-2. Pensez à bien ouvrir le port choisi (par exemple 8192) en UDP sur votre serveur/firewall
-
-3. Configurez le plugin de vote dans votre fichier `server.cfg` comme ceci :
+2. Configurez le plugin de vote dans votre fichier `server.cfg` comme ceci :
 
 ```ini
 ensure cfx-vote-plugin
 # La token est obligatoire. C'est la token de votre fiche serveur disponible sur votre panel https://gta.top-serveurs.net
 set vote_token "XXXXXXXXX"
-# Le port d'écoute du plugin. Par défaut, c'est le port 8192 mais vous pouvez spécifier celui que vous voulez. N'oubliez pas de le configurer aussi sur le panel de gestion de votre serveur sur https://gta.top-serveurs.net
-set vote_port "8192"
 ```
 
-4. Utilisez l'event `onPlayerVote` pour réceptionner les votes effectués. Des exemples sont disponibles dans le fichier `example.lua`, dans le fichier `example_vorp.lua` pour un exemple avec le framework VORP et un autre dans le fichier `example_esx.lua` pour un petit exemple avec ESX (pensez à supprimer les fichiers exemples dont vous n'avez pas besoin). Aussi, voici un simple exemple :
+3. Utilisez l'event `onPlayerVote` pour réceptionner les votes effectués. Des exemples sont disponibles dans le fichier `example.lua`, dans le fichier `example_vorp.lua` pour un exemple avec le framework VORP et un autre dans le fichier `example_esx.lua` pour un petit exemple avec ESX (pensez à supprimer les fichiers exemples dont vous n'avez pas besoin). Aussi, voici un simple exemple :
 
 ```lua
 AddEventHandler('onPlayerVote', function (playername, ip, date)
@@ -39,9 +35,9 @@ AddEventHandler('onPlayerVote', function (playername, ip, date)
 end)
 ```
 
-5. Démarrez votre serveur. Si vous voyez le message `[VotePlugin] Plugin de vote actif sur le port xxxx`, tout est bon !
+4. Démarrez votre serveur. Si vous voyez le message `[VotePlugin] The vote plugin is active on the default server port`, tout est bon !
 
-6. Dernière étape : activez le plugin de vote sur le panel de gestion de votre fiche serveur. Rendez-vous sur https://top-serveurs.net/gta dans la gestion de votre serveur, en bas il y a une section `Plugin de vote`. Vous devez activer le plugin et spécifier le port que vous avez indiqué plus haut dans votre fichier `server.cfg`. Une fois le plugin activé, vous pouvez cliquer sur le bouton pour tester la connectivité et ensuite à vous de jouer !
+5. Dernière étape : activez le plugin de vote sur le panel de gestion de votre fiche serveur. Rendez-vous sur https://top-serveurs.net/gta dans la gestion de votre serveur, en bas il y a une section `Plugin de vote`. Vous devez activer le plugin en choisissant "Vote plugin v3". Une fois le plugin activé, vous pouvez cliquer sur le bouton pour tester la connectivité et ensuite à vous de jouer !
 
 
 ## Aide & Suggestions

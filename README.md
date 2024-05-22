@@ -15,19 +15,15 @@ But what is FiveM for? [FiveM](https://top-games.net/gta/type/fivem) allows you 
 
 1. Copy the `cfx-vote-plugin` directory to the `resources` directory of your FiveM/RedM server
 
-2. Remember to open the chosen port (for example 8192) in UDP on your server/firewall.
-
-3. Configure the voting plugin in your `server.cfg` file like this:
+2. Configure the voting plugin in your `server.cfg` file like this:
 
 ```ini
 ensure cfx-vote-plugin
 # The token is mandatory. It is the token of your server file available on your panel https://top-games.net
 set vote_token "XXXXXXXXX"
-# The listening port of the plugin. Default is port 8192 but you can specify which one you want. Do not forget to configure it also on the management panel of your server on https://top-games.net/gta
-set vote_port "8192"
 ```
 
-4. Use the `onPlayerVote` event to receive the votes cast. Some examples are available in the `example.lua` file, in the `example_esx.lua` file for a small example with ESX and in the `example_vorp.lua` file for an example with the VORP framework (remember to delete the example files you don't need). Also, here is a basic example:
+3. Use the `onPlayerVote` event to receive the votes cast. Some examples are available in the `example.lua` file, in the `example_esx.lua` file for a small example with ESX and in the `example_vorp.lua` file for an example with the VORP framework (remember to delete the example files you don't need). Also, here is a basic example:
 
 ```lua
 AddEventHandler('onPlayerVote', function (playername, ip, date)
@@ -39,9 +35,9 @@ AddEventHandler('onPlayerVote', function (playername, ip, date)
 end)
 ```
 
-5. Start your server. If you see the message `[VotePlugin] Voting plugin active on port xxxx`, everything is fine!
+4. Start your server. If you see the message `[VotePlugin] The vote plugin is active on the default server port`, everything is fine!
 
-6. Last step: activate the voting plugin on the management panel of your server file. Go to https://top-games.net/gta in your server management, at the bottom there is a `Voting plugin` section. You need to activate the plugin and specify the port you indicated above in your `server.cfg` file. Once the plugin is activated, you can click on the button to test the connectivity and then it's up to you!
+5. Last step: activate the voting plugin on the management panel of your server file. Go to https://top-games.net/gta in your server management, at the bottom there is a `Voting plugin` section. You need to activate the plugin by choosing "Vote plugin v3". Once the plugin is activated, you can click on the button to test the connectivity and then it's up to you!
 
 
 ## Help & Suggestions
