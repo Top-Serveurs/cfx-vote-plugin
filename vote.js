@@ -3797,8 +3797,7 @@ class VoteReceptor_VoteReceptor {
       const error = this.hasError(vote);
 
       if (error) {
-        console.log(`ERROR: ${error}`);
-        return reject(error);
+        return reject(`ERROR: ${error}`);
       }
 
       const {

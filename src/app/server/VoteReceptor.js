@@ -57,8 +57,7 @@ class VoteReceptor {
         return new Promise((resolve, reject) => {
             const error = this.hasError(vote);
             if (error) {
-                console.log(`ERROR: ${error}`);
-                return reject(error);
+                return reject(`ERROR: ${error}`);
             }
             const { Playername, IP, Date, Version } = vote;
             emit("onPlayerVote", Playername, IP, Date);
