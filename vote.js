@@ -3714,7 +3714,13 @@ class Security_Security {
   }
 
   isTrustedIP(ip) {
-    return this.trustedIP.includes(ip);
+    const ipParts = ip.split(':');
+
+    if (ipParts.length > 1) {
+      return this.trustedIP.includes(ipParts[0]);
+    }
+
+    return false;
   }
 
 }
