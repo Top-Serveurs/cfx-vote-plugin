@@ -61,7 +61,7 @@ class VoteReceptor {
             }
             const { Playername, IP, Date, Version } = vote;
             emit("onPlayerVote", Playername, IP, Date);
-            if (Version !== pjson.version) {
+            if (Version > pjson.version) {
                 console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
             }
             resolve(true);
