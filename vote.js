@@ -3808,7 +3808,7 @@ class VoteReceptor_VoteReceptor {
       } = vote;
       emit("onPlayerVote", Playername, IP, Date);
 
-      if (Version !== package_0.version) {
+      if (Version > package_0.version) {
         console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
       }
 
