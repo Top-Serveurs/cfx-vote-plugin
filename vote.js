@@ -467,7 +467,7 @@ module.exports = {
 /* 1 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"cfx-vote-plugin\",\"version\":\"3.0.0\",\"description\":\"A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms\",\"scripts\":{\"build\":\"webpack --progress\",\"dev\":\"webpack --watch --progress\"},\"license\":\"MIT\",\"dependencies\":{\"axios\":\"^0.21.1\"},\"devDependencies\":{\"@babel/core\":\"^7.14.3\",\"@babel/eslint-parser\":\"^7.14.4\",\"@babel/eslint-plugin\":\"^7.13.16\",\"@babel/preset-env\":\"^7.14.4\",\"@citizenfx/server\":\"^1.0.2624-1\",\"babel-eslint\":\"^10.1.0\",\"babel-loader\":\"^8.2.2\",\"babel-plugin-transform-class-properties\":\"^6.24.1\",\"eslint\":\"^6.8.0\",\"webpack\":\"^4.46.0\",\"webpack-cli\":\"^3.3.12\"}}");
+module.exports = JSON.parse("{\"name\":\"cfx-vote-plugin\",\"version\":\"3.0.1\",\"description\":\"A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms\",\"scripts\":{\"build\":\"webpack --progress\",\"dev\":\"webpack --watch --progress\"},\"license\":\"MIT\",\"dependencies\":{\"axios\":\"^0.21.1\"},\"devDependencies\":{\"@babel/core\":\"^7.14.3\",\"@babel/eslint-parser\":\"^7.14.4\",\"@babel/eslint-plugin\":\"^7.13.16\",\"@babel/preset-env\":\"^7.14.4\",\"@citizenfx/server\":\"^1.0.2624-1\",\"babel-eslint\":\"^10.1.0\",\"babel-loader\":\"^8.2.2\",\"babel-plugin-transform-class-properties\":\"^6.24.1\",\"eslint\":\"^6.8.0\",\"webpack\":\"^4.46.0\",\"webpack-cli\":\"^3.3.12\"}}");
 
 /***/ }),
 /* 2 */
@@ -3709,7 +3709,7 @@ class Security_Security {
         throw new Error("Invalid JSON");
       }
     }).catch(e => {
-      console.log("ERROR: Unable to get trusted IP list from remote. Using default list.");
+      console.error("Unable to get trusted IP list from remote. Using default list.");
     });
   }
 
@@ -3797,7 +3797,7 @@ class VoteReceptor_VoteReceptor {
       const error = this.hasError(vote);
 
       if (error) {
-        return reject(`ERROR: ${error}`);
+        return reject(error);
       }
 
       const {
@@ -3828,7 +3828,7 @@ class Server_Server {
   constructor(config) {
     this.handleRequest = (res, data, address) => {
       if (!this.security.isTrustedIP(address)) {
-        return this.returnError(res, 'ERROR: Receving a vote from an untrusted IP');
+        return this.returnError(res, 'Receving a vote from an untrusted IP');
       }
 
       const payload = JSON.parse(data);
@@ -3847,7 +3847,7 @@ class Server_Server {
         res.writeHead(200);
         res.send('test-success');
       } else {
-        return this.returnError(res, 'ERROR: No action match the current payload');
+        return this.returnError(res, 'No action match the current payload');
       }
     };
 
@@ -3874,7 +3874,7 @@ class Server_Server {
   }
 
   returnError(res, error) {
-    console.log(error);
+    console.error(error);
     res.writeHead(400);
     res.send(error);
   }
@@ -3892,7 +3892,13 @@ const server = new server_Server(app_config);
 on('onResourceStart', resourceName => {
   if (resourceName === GetCurrentResourceName()) {
     if (app_config.token.length === 0) {
-      console.log('ERROR: the vote token is missing in your config file. Please fill it!');
+      console.log('\x1b[31m########################\x1b[0m');
+      console.error('The vote token is missing in your config file. Please fill it!');
+      console.log('\x1b[31m########################\x1b[0m');
+    } else if (resourceName !== 'vote') {
+      console.log('\x1b[31m########################\x1b[0m');
+      console.error('The resource name (directory name) must be "vote". Actual name: ' + resourceName);
+      console.log('\x1b[31m########################\x1b[0m');
     } else {
       server.start();
       emit('onVoteReady');

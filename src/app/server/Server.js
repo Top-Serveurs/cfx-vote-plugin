@@ -24,7 +24,7 @@ class Server {
     }
     handleRequest = (res, data, address) => {
         if (! this.security.isTrustedIP(address)) {
-            return this.returnError(res, 'ERROR: Receving a vote from an untrusted IP');
+            return this.returnError(res, 'Receving a vote from an untrusted IP');
         }
         const payload = JSON.parse(data);
         if (payload.Action === "vote") {
@@ -41,12 +41,12 @@ class Server {
 		    res.writeHead(200);
 		    res.send('test-success');
         } else {
-            return this.returnError(res, 'ERROR: No action match the current payload');
+            return this.returnError(res, 'No action match the current payload');
         }
     };
 
     returnError(res, error) {
-        console.log(error);
+        console.error(error);
         res.writeHead(400);
         res.send(error);
     }

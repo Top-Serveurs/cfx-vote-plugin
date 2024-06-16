@@ -24,7 +24,7 @@ class Security {
             }
         })
         .catch(e => {
-            console.log("ERROR: Unable to get trusted IP list from remote. Using default list.");
+            console.error("Unable to get trusted IP list from remote. Using default list.");
         });
     }
 
