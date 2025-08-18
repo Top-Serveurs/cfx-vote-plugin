@@ -26,11 +26,10 @@ set vote_token "XXXXXXXXX"
 3. Use the `onPlayerVote` event to receive the votes cast. Some examples are available in the `example.lua` file, in the `example_esx.lua` file for a small example with ESX and in the `example_vorp.lua` file for an example with the VORP framework (remember to delete the example files you don't need). Also, here is a basic example:
 
 ```lua
-AddEventHandler('onPlayerVote', function (playername, ip, date)
+AddEventHandler('onPlayerVote', function (playername, date)
     -- Add actions here when a vote is received.
     -- For example: give In-Game money, give points, save in DB, ...
     print(playername)
-    print(ip)
     print(date)
 end)
 ```

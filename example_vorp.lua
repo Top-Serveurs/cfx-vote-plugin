@@ -7,10 +7,9 @@ TriggerEvent("getCore", function(core)
     VorpCore = core
 end)
 
-AddEventHandler('onPlayerVote', function (playerName, ip, date)
+AddEventHandler('onPlayerVote', function (playerName, date)
     -- Display vote information in the server console
     print(playername)
-    print(ip)
     print(date)
 
     -- Get the VORP user object for the specified player

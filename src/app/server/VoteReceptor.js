@@ -13,13 +13,6 @@ class VoteReceptor {
         return playername.match(regex);
     }
 
-    checkIP(ip) {
-        const regex = /[0-9.:]/g;
-        if (! ip) return false;
-        if (ip.length > 100) return false;
-        return ip.match(regex);
-    }
-
     checkVersion(version) {
         const regex = /[0-9.]/g;
         if (! version) return false;
@@ -34,15 +27,12 @@ class VoteReceptor {
         return date.match(regex);
     }
 
-    hasError({Token, Playername, IP, Version, Date}) {
+    hasError({Token, Playername, Version, Date}) {
         if (Token !== this.token) {
             return "Wrong vote token";
         }
         if (! this.checkPlayername(Playername)) {
             return "Invalid playername";
-        }
-        if (! this.checkIP(IP)) {
-            return "Invalid IP address";
         }
         if (! this.checkVersion(Version)) {
             return "Invalid version";
@@ -59,8 +49,8 @@ class VoteReceptor {
             if (error) {
                 return reject(error);
             }
-            const { Playername, IP, Date, Version } = vote;
-            emit("onPlayerVote", Playername, IP, Date);
+            const { Playername, Date, Version } = vote;
+            emit("onPlayerVote", Playername, Date);
             if (Version > pjson.version) {
                 console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
             }
