@@ -30,11 +30,10 @@ set vote_port "8192"
 4. Utilisez l'event `onPlayerVote` pour réceptionner les votes effectués. Des exemples sont disponibles dans le fichier `example.lua`, dans le fichier `example_vorp.lua` pour un exemple avec le framework VORP et un autre dans le fichier `example_esx.lua` pour un petit exemple avec ESX (pensez à supprimer les fichiers exemples dont vous n'avez pas besoin). Aussi, voici un simple exemple :
 
 ```lua
-AddEventHandler('onPlayerVote', function (playername, ip, date)
+AddEventHandler('onPlayerVote', function (playername, date)
     -- Ajouter ici des actions lorsqu'un vote est perçu.
     -- Par exemple : donner de l'argent In-Game, donner des points, enregistrer en BDD, ...
     print(playername)
-    print(ip)
     print(date)
 end)
 ```

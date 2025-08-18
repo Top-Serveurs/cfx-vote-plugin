@@ -55,7 +55,7 @@ local getPlayerByName = function(playername)
     return false
 end
 
-AddEventHandler('onPlayerVote', function (playername, ip, date)
+AddEventHandler('onPlayerVote', function (playername, date)
     local xPlayer = getPlayerByName(playername)
 
     -- If the player is currently playing
