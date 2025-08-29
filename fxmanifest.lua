@@ -4,7 +4,7 @@ game 'common'
 name 'vote'
 description 'Vote plugin for Top-games.net/Top-serveurs.net platforms'
 author 'Top-Games/Top-Serveurs'
-version '2.0.1'
+version '3.0.2'
 url 'https://github.com/Top-Serveurs/cfx-vote-plugin'
 
 

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 49);
+/******/ 	return __webpack_require__(__webpack_require__.s = 48);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -467,7 +467,7 @@ module.exports = {
 /* 1 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"cfx-vote-plugin\",\"version\":\"2.0.1\",\"description\":\"A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms\",\"scripts\":{\"build\":\"webpack --progress\",\"dev\":\"webpack --watch --progress\"},\"license\":\"MIT\",\"dependencies\":{\"axios\":\"^0.21.1\"},\"devDependencies\":{\"@babel/core\":\"^7.14.3\",\"@babel/eslint-parser\":\"^7.14.4\",\"@babel/eslint-plugin\":\"^7.13.16\",\"@babel/preset-env\":\"^7.14.4\",\"@citizenfx/server\":\"^1.0.2624-1\",\"babel-eslint\":\"^10.1.0\",\"babel-loader\":\"^8.2.2\",\"babel-plugin-transform-class-properties\":\"^6.24.1\",\"eslint\":\"^6.8.0\",\"webpack\":\"^4.46.0\",\"webpack-cli\":\"^3.3.12\"}}");
+module.exports = JSON.parse("{\"name\":\"cfx-vote-plugin\",\"version\":\"3.0.2\",\"description\":\"A Fivem vote plugin for Top-games.net/Top-serveurs.net platforms\",\"scripts\":{\"build\":\"webpack --progress\",\"dev\":\"webpack --watch --progress\"},\"license\":\"MIT\",\"dependencies\":{\"axios\":\"^0.21.1\"},\"devDependencies\":{\"@babel/core\":\"^7.14.3\",\"@babel/eslint-parser\":\"^7.14.4\",\"@babel/eslint-plugin\":\"^7.13.16\",\"@babel/preset-env\":\"^7.14.4\",\"@citizenfx/server\":\"^1.0.2624-1\",\"babel-eslint\":\"^10.1.0\",\"babel-loader\":\"^8.2.2\",\"babel-plugin-transform-class-properties\":\"^6.24.1\",\"eslint\":\"^6.8.0\",\"webpack\":\"^4.46.0\",\"webpack-cli\":\"^3.3.12\"}}");
 
 /***/ }),
 /* 2 */
@@ -605,7 +605,7 @@ module.exports = function isCancel(value) {
 
 var utils = __webpack_require__(0);
 
-var normalizeHeaderName = __webpack_require__(24);
+var normalizeHeaderName = __webpack_require__(23);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -622,10 +622,10 @@ function getDefaultAdapter() {
 
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(25);
+    adapter = __webpack_require__(24);
   } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(31);
+    adapter = __webpack_require__(30);
   }
 
   return adapter;
@@ -780,9 +780,9 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var isAbsoluteURL = __webpack_require__(27);
+var isAbsoluteURL = __webpack_require__(26);
 
-var combineURLs = __webpack_require__(28);
+var combineURLs = __webpack_require__(27);
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
  * only when the requestedURL is not already an absolute URL.
@@ -826,11 +826,11 @@ var http = __webpack_require__(10);
 
 var https = __webpack_require__(11);
 
-var Writable = __webpack_require__(32).Writable;
+var Writable = __webpack_require__(31).Writable;
 
-var assert = __webpack_require__(33);
+var assert = __webpack_require__(32);
 
-var debug = __webpack_require__(34); // Create handlers that pass events from native requests
+var debug = __webpack_require__(33); // Create handlers that pass events from native requests
 
 
 var events = ["abort", "aborted", "connect", "error", "socket", "timeout"];
@@ -1391,7 +1391,7 @@ function setup(env) {
   createDebug.disable = disable;
   createDebug.enable = enable;
   createDebug.enabled = enabled;
-  createDebug.humanize = __webpack_require__(37);
+  createDebug.humanize = __webpack_require__(36);
   createDebug.destroy = destroy;
   Object.keys(env).forEach(key => {
     createDebug[key] = env[key];
@@ -1736,18 +1736,12 @@ module.exports = Cancel;
 
 /***/ }),
 /* 17 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("dgram");
+module.exports = __webpack_require__(18);
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(19);
-
-/***/ }),
-/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1757,7 +1751,7 @@ var utils = __webpack_require__(0);
 
 var bind = __webpack_require__(4);
 
-var Axios = __webpack_require__(20);
+var Axios = __webpack_require__(19);
 
 var mergeConfig = __webpack_require__(15);
 
@@ -1791,22 +1785,22 @@ axios.create = function create(instanceConfig) {
 
 
 axios.Cancel = __webpack_require__(16);
-axios.CancelToken = __webpack_require__(46);
+axios.CancelToken = __webpack_require__(45);
 axios.isCancel = __webpack_require__(5); // Expose all/spread
 
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
 
-axios.spread = __webpack_require__(47); // Expose isAxiosError
+axios.spread = __webpack_require__(46); // Expose isAxiosError
 
-axios.isAxiosError = __webpack_require__(48);
+axios.isAxiosError = __webpack_require__(47);
 module.exports = axios; // Allow use of default import syntax in TypeScript
 
 module.exports.default = axios;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1816,9 +1810,9 @@ var utils = __webpack_require__(0);
 
 var buildURL = __webpack_require__(2);
 
-var InterceptorManager = __webpack_require__(21);
+var InterceptorManager = __webpack_require__(20);
 
-var dispatchRequest = __webpack_require__(22);
+var dispatchRequest = __webpack_require__(21);
 
 var mergeConfig = __webpack_require__(15);
 /**
@@ -1908,7 +1902,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = Axios;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1969,7 +1963,7 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
 module.exports = InterceptorManager;
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1977,7 +1971,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 
-var transformData = __webpack_require__(23);
+var transformData = __webpack_require__(22);
 
 var isCancel = __webpack_require__(5);
 
@@ -2031,7 +2025,7 @@ module.exports = function dispatchRequest(config) {
 };
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2057,7 +2051,7 @@ module.exports = function transformData(data, headers, fns) {
 };
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2075,7 +2069,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 };
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2085,15 +2079,15 @@ var utils = __webpack_require__(0);
 
 var settle = __webpack_require__(7);
 
-var cookies = __webpack_require__(26);
+var cookies = __webpack_require__(25);
 
 var buildURL = __webpack_require__(2);
 
 var buildFullPath = __webpack_require__(9);
 
-var parseHeaders = __webpack_require__(29);
+var parseHeaders = __webpack_require__(28);
 
-var isURLSameOrigin = __webpack_require__(30);
+var isURLSameOrigin = __webpack_require__(29);
 
 var createError = __webpack_require__(3);
 
@@ -2258,7 +2252,7 @@ module.exports = function xhrAdapter(config) {
 };
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2311,7 +2305,7 @@ function nonStandardBrowserEnv() {
 }();
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2331,7 +2325,7 @@ module.exports = function isAbsoluteURL(url) {
 };
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2349,7 +2343,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 };
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2405,7 +2399,7 @@ module.exports = function parseHeaders(headers) {
 };
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2469,7 +2463,7 @@ function nonStandardBrowserEnv() {
 }();
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2493,9 +2487,9 @@ var httpsFollow = __webpack_require__(12).https;
 
 var url = __webpack_require__(13);
 
-var zlib = __webpack_require__(44);
+var zlib = __webpack_require__(43);
 
-var pkg = __webpack_require__(45);
+var pkg = __webpack_require__(44);
 
 var createError = __webpack_require__(3);
 
@@ -2784,19 +2778,19 @@ module.exports = function httpAdapter(config) {
 };
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("stream");
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = require("assert");
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var debug;
@@ -2805,7 +2799,7 @@ module.exports = function () {
   if (!debug) {
     try {
       /* eslint global-require: off */
-      debug = __webpack_require__(35)("follow-redirects");
+      debug = __webpack_require__(34)("follow-redirects");
     } catch (error) {
       debug = function () {
         /* */
@@ -2817,7 +2811,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2825,13 +2819,13 @@ module.exports = function () {
  * treat as a browser.
  */
 if (typeof process === 'undefined' || process.type === 'renderer' || process.browser === true || process.__nwjs) {
-  module.exports = __webpack_require__(36);
+  module.exports = __webpack_require__(35);
 } else {
-  module.exports = __webpack_require__(38);
+  module.exports = __webpack_require__(37);
 }
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-env browser */
@@ -3019,7 +3013,7 @@ formatters.j = function (v) {
 };
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports) {
 
 /**
@@ -3203,15 +3197,15 @@ function plural(ms, msAbs, n, name) {
 }
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
-const tty = __webpack_require__(39);
+const tty = __webpack_require__(38);
 
-const util = __webpack_require__(40);
+const util = __webpack_require__(39);
 /**
  * This is the Node.js implementation of `debug()`.
  */
@@ -3233,7 +3227,7 @@ exports.colors = [6, 2, 3, 4, 5, 1];
 try {
   // Optional dependency (as in, doesn't need to be installed, NOT like optionalDependencies in package.json)
   // eslint-disable-next-line import/no-extraneous-dependencies
-  const supportsColor = __webpack_require__(41);
+  const supportsColor = __webpack_require__(40);
 
   if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
     exports.colors = [20, 21, 26, 27, 32, 33, 38, 39, 40, 41, 42, 43, 44, 45, 56, 57, 62, 63, 68, 69, 74, 75, 76, 77, 78, 79, 80, 81, 92, 93, 98, 99, 112, 113, 128, 129, 134, 135, 148, 149, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 178, 179, 184, 185, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 214, 215, 220, 221];
@@ -3384,27 +3378,27 @@ formatters.O = function (v) {
 };
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = require("tty");
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = require("util");
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const os = __webpack_require__(42);
+const os = __webpack_require__(41);
 
-const hasFlag = __webpack_require__(43);
+const hasFlag = __webpack_require__(42);
 
 const env = process.env;
 let forceColor;
@@ -3527,13 +3521,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3548,19 +3542,19 @@ module.exports = (flag, argv) => {
 };
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = require("zlib");
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"_args\":[[\"axios@0.21.1\",\"/Users/cfx-vote-plugin/src\"]],\"_from\":\"axios@0.21.1\",\"_id\":\"axios@0.21.1\",\"_inBundle\":false,\"_integrity\":\"sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==\",\"_location\":\"/axios\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"axios@0.21.1\",\"name\":\"axios\",\"escapedName\":\"axios\",\"rawSpec\":\"0.21.1\",\"saveSpec\":null,\"fetchSpec\":\"0.21.1\"},\"_requiredBy\":[\"/\"],\"_resolved\":\"https://registry.npmjs.org/axios/-/axios-0.21.1.tgz\",\"_spec\":\"0.21.1\",\"_where\":\"/Users/joe/Projects/cfx-vote-plugin/src\",\"author\":{\"name\":\"Matt Zabriskie\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}],\"dependencies\":{\"follow-redirects\":\"^1.10.0\"},\"description\":\"Promise based HTTP client for the browser and node.js\",\"devDependencies\":{\"bundlesize\":\"^0.17.0\",\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.0.2\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^20.1.0\",\"grunt-karma\":\"^2.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^1.0.18\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^1.3.0\",\"karma-chrome-launcher\":\"^2.2.0\",\"karma-coverage\":\"^1.1.1\",\"karma-firefox-launcher\":\"^1.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-opera-launcher\":\"^1.0.0\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^1.2.0\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.7\",\"karma-webpack\":\"^1.7.0\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^5.2.0\",\"sinon\":\"^4.5.0\",\"typescript\":\"^2.8.1\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^1.13.1\",\"webpack-dev-server\":\"^1.14.1\"},\"homepage\":\"https://github.com/axios/axios\",\"jsdelivr\":\"dist/axios.min.js\",\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"axios\",\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/axios/axios.git\"},\"scripts\":{\"build\":\"NODE_ENV=production grunt build\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"examples\":\"node ./examples/server.js\",\"fix\":\"eslint --fix lib/**/*.js\",\"postversion\":\"git push && git push --tags\",\"preversion\":\"npm test\",\"start\":\"node ./sandbox/server.js\",\"test\":\"grunt test && bundlesize\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\"},\"typings\":\"./index.d.ts\",\"unpkg\":\"dist/axios.min.js\",\"version\":\"0.21.1\"}");
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3625,7 +3619,7 @@ CancelToken.source = function source() {
 module.exports = CancelToken;
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3658,7 +3652,7 @@ module.exports = function spread(callback) {
 };
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3675,19 +3669,18 @@ module.exports = function isAxiosError(payload) {
 };
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: external "dgram"
-var external_dgram_ = __webpack_require__(17);
-var external_dgram_default = /*#__PURE__*/__webpack_require__.n(external_dgram_);
+// EXTERNAL MODULE: ./package.json
+var package_0 = __webpack_require__(1);
 
 // EXTERNAL MODULE: ./node_modules/axios/index.js
-var axios = __webpack_require__(18);
+var axios = __webpack_require__(17);
 var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 // CONCATENATED MODULE: ./app/server/Security.js
@@ -3716,20 +3709,23 @@ class Security_Security {
         throw new Error("Invalid JSON");
       }
     }).catch(e => {
-      console.log("ERROR: Unable to get trusted IP list from remote. Using default list.");
+      console.error("Unable to get trusted IP list from remote. Using default list.");
     });
   }
 
   isTrustedIP(ip) {
-    return this.trustedIP.includes(ip);
+    const ipParts = ip.split(':');
+
+    if (ipParts.length > 1) {
+      return this.trustedIP.includes(ipParts[0]);
+    }
+
+    return false;
   }
 
 }
 
 /* harmony default export */ var server_Security = (Security_Security);
-// EXTERNAL MODULE: ./package.json
-var package_0 = __webpack_require__(1);
-
 // CONCATENATED MODULE: ./app/server/VoteReceptor.js
 
 
@@ -3785,22 +3781,26 @@ class VoteReceptor_VoteReceptor {
   }
 
   handleVote(vote) {
-    const error = this.hasError(vote);
+    return new Promise((resolve, reject) => {
+      const error = this.hasError(vote);
 
-    if (error) {
-      return console.log(`ERROR: ${error}`);
-    }
+      if (error) {
+        return reject(error);
+      }
 
-    const {
-      Playername,
-      Date,
-      Version
-    } = vote;
-    emit("onPlayerVote", Playername, Date);
+      const {
+        Playername,
+        Date,
+        Version
+      } = vote;
+      emit("onPlayerVote", Playername, Date);
 
-    if (Version !== package_0.version) {
-      console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
-    }
+      if (Version > package_0.version) {
+        console.log('WARNING: a new update is available for the vote plugin. Please keep it up to date.');
+      }
+
+      resolve(true);
+    });
   }
 
 }
@@ -3811,56 +3811,59 @@ class VoteReceptor_VoteReceptor {
 
 
 
-
 class Server_Server {
   constructor(config) {
-    this.handleListening = () => {
-      const address = this.socketServer.address();
-      console.log(`The vote plugin is active and listening on port ${address.port}`);
-    };
-
-    this.handleMessage = (msg, rinfo) => {
-      if (!this.security.isTrustedIP(rinfo.address)) {
-        return console.log('ERROR: Receving a vote from an untrusted IP');
+    this.handleRequest = (res, data, address) => {
+      if (!this.security.isTrustedIP(address)) {
+        return this.returnError(res, 'Receving a vote from an untrusted IP');
       }
 
-      const payload = JSON.parse(msg);
+      const payload = JSON.parse(data);
 
       if (payload.Action === "vote") {
-        this.voteReceptor.handleVote(payload);
+        this.voteReceptor.handleVote(payload).then(() => {
+          res.writeHead(200);
+          return res.send('success');
+        }).catch(error => {
+          return this.returnError(res, error);
+        });
       } else if (payload.Action === "refresh_ip") {
         this.security.loadTrustedIP();
       } else if (payload.Action === "test") {
         console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
+        res.writeHead(200);
+        res.send('test-success');
       } else {
-        console.log('ERROR: No action match the current payload');
+        return this.returnError(res, 'No action match the current payload');
       }
-    };
-
-    this.handleError = error => {
-      console.log(`ERROR: ${error.stack}`);
-      this.socketServer.close();
     };
 
     const {
       token,
-      port,
       env
     } = config;
     this.security = new server_Security(env);
     this.voteReceptor = new server_VoteReceptor(token);
-    this.port = port;
-    this.socketServer = external_dgram_default.a.createSocket('udp4');
   }
 
   start() {
     console.log(`Initializing vote plugin (v${package_0.version})...`);
     console.log(`Support Top-Games: https://top-games.net/contact`);
     console.log(`Support Top-Serveurs: https://top-serveurs.net/contact`);
-    this.socketServer.on('error', this.handleError);
-    this.socketServer.on('message', this.handleMessage);
-    this.socketServer.on('listening', this.handleListening);
-    this.socketServer.bind(this.port);
+    SetHttpHandler((req, res) => {
+      if (req.path === '/') {
+        req.setDataHandler(data => {
+          this.handleRequest(res, data, req.address);
+        });
+      }
+    });
+    console.log(`The vote plugin is active on the default server port`);
+  }
+
+  returnError(res, error) {
+    console.error(error);
+    res.writeHead(400);
+    res.send(error);
   }
 
 }
@@ -3869,7 +3872,6 @@ class Server_Server {
 // CONCATENATED MODULE: ./app/index.js
 
 const app_config = {
-  port: GetConvar("vote_port", "8192"),
   token: GetConvar("vote_token", ""),
   env: GetConvar("vote_env", "prod")
 };
@@ -3877,7 +3879,13 @@ const server = new server_Server(app_config);
 on('onResourceStart', resourceName => {
   if (resourceName === GetCurrentResourceName()) {
     if (app_config.token.length === 0) {
-      console.log('ERROR: the vote token is missing in your config file. Please fill it!');
+      console.log('\x1b[31m########################\x1b[0m');
+      console.error('The vote token is missing in your config file. Please fill it!');
+      console.log('\x1b[31m########################\x1b[0m');
+    } else if (resourceName !== 'vote') {
+      console.log('\x1b[31m########################\x1b[0m');
+      console.error('The resource name (directory name) must be "vote". Actual name: ' + resourceName);
+      console.log('\x1b[31m########################\x1b[0m');
     } else {
       server.start();
       emit('onVoteReady');

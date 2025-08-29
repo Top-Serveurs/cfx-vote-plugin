@@ -7,7 +7,7 @@ class Security {
           "188.165.45.67",
           "188.165.46.57",
         ];
-        this.loadTrustedIP();
+        this.loadTrustedIP()
     }
 
     loadTrustedIP() {
@@ -24,12 +24,16 @@ class Security {
             }
         })
         .catch(e => {
-            console.log("ERROR: Unable to get trusted IP list from remote. Using default list.");
+            console.error("Unable to get trusted IP list from remote. Using default list.");
         });
     }
 
     isTrustedIP(ip) {
-        return this.trustedIP.includes(ip);
+        const ipParts = ip.split(':');
+        if (ipParts.length > 1) {
+            return this.trustedIP.includes(ipParts[0]);
+        }
+        return false;
     }
 }
 

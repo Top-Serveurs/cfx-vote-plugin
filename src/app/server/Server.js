@@ -1,52 +1,55 @@
-import dgram from 'dgram';
+import pjson from '../../package.json';
 import Security from "./Security";
 import VoteReceptor from "./VoteReceptor";
-import pjson from '../../package.json';
 
 class Server {
     constructor(config) {
-        const { token, port, env } = config;
+        const { token, env } = config;
         this.security = new Security(env);
         this.voteReceptor = new VoteReceptor(token);
-        this.port = port;
-        this.socketServer = dgram.createSocket('udp4')
     }
 
     start() {
         console.log(`Initializing vote plugin (v${pjson.version})...`);
         console.log(`Support Top-Games: https://top-games.net/contact`);
         console.log(`Support Top-Serveurs: https://top-serveurs.net/contact`);
-        this.socketServer.on('error', this.handleError);
-        this.socketServer.on('message', this.handleMessage);
-        this.socketServer.on('listening', this.handleListening);
-        this.socketServer.bind(this.port);
+        SetHttpHandler((req, res) => {
+            if (req.path === '/') {
+                req.setDataHandler(data => {
+                    this.handleRequest(res, data, req.address);
+                })
+            }
+        })
+        console.log(`The vote plugin is active on the default server port`);
     }
-
-    handleListening = () => {
-        const address = this.socketServer.address();
-        console.log(`The vote plugin is active and listening on port ${address.port}`);
-    };
-
-    handleMessage = (msg, rinfo) => {
-        if (! this.security.isTrustedIP(rinfo.address)) {
-            return console.log('ERROR: Receving a vote from an untrusted IP');
+    handleRequest = (res, data, address) => {
+        if (! this.security.isTrustedIP(address)) {
+            return this.returnError(res, 'Receving a vote from an untrusted IP');
         }
-        const payload = JSON.parse(msg);
+        const payload = JSON.parse(data);
         if (payload.Action === "vote") {
-	    this.voteReceptor.handleVote(payload);
+		    this.voteReceptor.handleVote(payload).then(() => {
+                res.writeHead(200);
+                return res.send('success');
+            }).catch((error) => {
+                return this.returnError(res, error);
+            });
         } else if (payload.Action === "refresh_ip") {
-            this.security.loadTrustedIP();
+        	this.security.loadTrustedIP();
         } else if (payload.Action === "test") {
-            console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
+        	console.log('Test: The vote plugin is correctly linked to Top-games.net/Top-serveurs.net website');
+		    res.writeHead(200);
+		    res.send('test-success');
         } else {
-            console.log('ERROR: No action match the current payload');
+            return this.returnError(res, 'No action match the current payload');
         }
     };
 
-    handleError = error => {
-        console.log(`ERROR: ${error.stack}`);
-        this.socketServer.close();
-    };
+    returnError(res, error) {
+        console.error(error);
+        res.writeHead(400);
+        res.send(error);
+    }
 
 }
 
